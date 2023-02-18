@@ -1,0 +1,8 @@
+__pycache__/
+.flaskenv
+.DS_Store
+venv/
+scratch/
+
+# SQLite databases
+*.sqlite
