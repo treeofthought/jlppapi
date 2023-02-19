@@ -1,1 +1,1 @@
-web: gunicorn jlppapi:app
+web: flask seed; gunicorn jlppapi:app
