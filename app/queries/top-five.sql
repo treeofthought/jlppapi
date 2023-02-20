@@ -1,10 +1,11 @@
 with top_five as (
   select
-    book_id,
-    round(avg(rating)) as avg,
-    rank() over (order by avg(rating) desc)
-  from ratings
-  group by 1
+    r.book_id,
+    round(avg(r.rating), 1) as avg,
+    rank() over (order by avg(r.rating) desc, b.author, b.title)
+  from ratings r 
+  join books b on b.id = r.book_id
+  group by 1, b.author, b.title
   order by 2 desc 
 )
 

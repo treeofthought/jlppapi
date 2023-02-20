@@ -18,6 +18,7 @@ class HerokuConfig(Config):
     sqlalchemy_support = heroku_db_url.replace('postgres://', 'postgresql://')
     SQLALCHEMY_DATABASE_URI = sqlalchemy_support
 
+
 config = {
     'default': Config,
     'heroku': HerokuConfig

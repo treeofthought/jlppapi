@@ -1,7 +1,7 @@
 select
   b.title as "Title",
   b.author as "Author",
-  round(avg(rating)) as "Avg",
+  round(avg(rating), 1) as "Avg",
   max(case when u.name = 'C' then r.rating else NULL end) as "C",
   max(case when u.name = 'D' then r.rating else NULL end) as "D",
   max(case when u.name = 'G' then r.rating else NULL end) as "G",
@@ -12,4 +12,4 @@ from ratings r
 join books b on b.id = r.book_id
 join users u on u.id = r.user_id
 group by 1,2
-order by 3 desc
+order by avg(rating) desc, 2,1
