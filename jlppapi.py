@@ -22,6 +22,7 @@ def forbidden(message):
 
 @auth.verify_password
 def verify_password(email_or_token, password):
+  print('we verifying')
   g.token_used = False
   if email_or_token == '':
     return False
@@ -33,6 +34,7 @@ def verify_password(email_or_token, password):
   if not user:
     return False
   g.current_user = user
+  print('YAAAAAAA DARLING')
   return user.verify_password(password)
 
 def read(query):
@@ -87,9 +89,11 @@ def ratings_user(user):
   u = User.query.filter_by(name=user).first()
   return u.ratings_list()
 
-@app.route('/tokens', methods=['POST', 'OPTIONS'])
+@app.route('/tokens', methods=['POST'])
 @auth.login_required
 def get_token():
+  print(g)
+  print('we in the get token')
   if g.token_used:
     return forbidden('Cannot fetch a token with a token')
   return {
