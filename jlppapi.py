@@ -87,7 +87,7 @@ def ratings_user(user):
   u = User.query.filter_by(name=user).first()
   return u.ratings_list()
 
-@app.route('/tokens', methods=['POST'])
+@app.route('/tokens', methods=['POST', 'OPTIONS'])
 @auth.login_required
 def get_token():
   if g.token_used:
